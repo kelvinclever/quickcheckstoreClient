@@ -1,0 +1,19 @@
+.success{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.success-img img{
+    height: 20rem;
+}
+.success-text h1{
+    color: #fd5811;
+}
+.success-text button{
+    margin-top: 1rem;
+    background-color: #fd5811;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 3rem;
+}

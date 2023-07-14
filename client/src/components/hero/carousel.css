@@ -1,0 +1,17 @@
+.carousel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  } 
+  .carousel-button-left{
+    background-color: #FD5811;
+    height: 18rem;
+    width: 3rem;
+    border: none;
+  }
+  .carousel-button{
+    background-color: #FD5811;
+    height: 18rem;
+    border: none;
+  }

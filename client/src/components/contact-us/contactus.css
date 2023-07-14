@@ -1,0 +1,51 @@
+.logo{
+    color: #FD5811;
+}
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.contact-us .ctus {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.contact-us-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.contact-form-container {
+    width: 50%;
+}
+
+.contact-form {}
+.contactus-img img{
+    height: 20rem;
+}
+.contact-form input {
+    height: 2.2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: none;
+    background-color: #d9d9d9;
+}
+
+.contact-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactus-btn {
+    background-color: #FD5811;
+    height: 2.5rem;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 1rem;
+}

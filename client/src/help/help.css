@@ -1,0 +1,11 @@
+.help{
+    margin: 0 5rem;
+    display: flex;
+    justify-content: space-around;
+}
+.help img{
+    height: 50%;
+}
+.help-qn{
+    color: #fd5811;
+}
