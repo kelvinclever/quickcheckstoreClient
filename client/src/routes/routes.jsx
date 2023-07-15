@@ -9,6 +9,7 @@ import Help from "../help/Help";
 import Success from "../components/success/Success";
 import Landingpage from "../components/landingpage/Landingpage";
 import Products from "../components/product/Products";
+import ProductDetails from "../components/product/Product";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -20,6 +21,8 @@ export const router = createBrowserRouter(
                 <Route path="success" element={<Success/>} />
                 <Route path="contact-us" element={<Contactus />} />
                 <Route path="products" element={<Products/>} />
+                <Route path="/products/single " element={< ProductDetails/>} />
+                
             </Route>
             <Route path="/auth">
                 <Route path="login" element={<Login />} />

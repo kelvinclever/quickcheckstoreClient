@@ -43,11 +43,20 @@ const Hero = () => {
     <div className="hero">
       <div className="hero-left">
         <div className="hero-categories">
-          <h4>category 1</h4>
-          <h4>category 2</h4>
-          <h4>category 3</h4>
-          <h4>category 4</h4>
-          <h4>category 5</h4>
+        <h4>Category 1</h4>
+    <div className="sub-categories">
+      <h5>Subcategory 1</h5>
+      <h5>Subcategory 2</h5>
+      <h5>Subcategory 3</h5>
+    </div>
+  </div>
+  <div className="hero-categories">
+    <h4>Category 2</h4>
+    <div className="sub-categories">
+      <h5>Subcategory 1</h5>
+      <h5>Subcategory 2</h5>
+      <h5>Subcategory 3</h5>
+    </div>
         </div>
       </div>
 

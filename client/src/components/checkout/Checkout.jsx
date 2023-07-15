@@ -1,62 +1,93 @@
 import './checkout.css'
 import { FaTrashAlt } from "react-icons/fa";
-
+import { useContext, useState } from 'react';
+import { CartContext } from '../cart/Cartcontext';
 const Checkout = () => {
-    return (
-        <div className='checkout-main'>
+  const { cartItems, getCartTotal, removeFromCart } = useContext(CartContext);
+  const [shippingInfo, setShippingInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  });
 
-            <div className='checkout-now'>
-                <div>
-                    <h4>Checkout</h4>
-                    <h4>Shipping information</h4>
-                    <form className='checkout-form' action="">
-                        <div className='inputs'>
-                            <label htmlFor="">Name *</label>
-                            <div>
-                                <input type="text" />
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div className='inputs'>
-                            <label htmlFor="">Email *</label>
-                            <input type="text" />
-                        </div>
-                        <div className='inputs'>
-                            <label htmlFor="">PHONE *</label>
-                            <input type="text" />
-                        </div>
-                        <div className='inputs'>
-                            <label htmlFor="">Adress</label>
-                            <input type="text" />
-                        </div>
-                        <button className="proceed-btn">PROCEED</button>
-                    </form>
-                </div>
-                <div className='checkout-right'>
-                    <h2>CART()</h2>
-                    <div>
-                        <div >
-                            <img className='checkout-img' src="https://imgd.aeplcdn.com/1056x594/n/cw/ec/44686/activa-6g-right-front-three-quarter.jpeg?q=75" alt="" />
-                            <div>
-                                Lorem ipsum dolor sit amet.
-                            </div>
-                        </div>
-                        <div>
-                            <button className='remove-btn'><FaTrashAlt className='trash' /> Remove</button>
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Cart Summary</h3>
-                        <div className='checkout-subtotal'>
-                            <p>SUB TOTAL</p>
-                            <p>KES 200</p>
-                        </div>
-                    </div>
+  const handleRemoveItem = (item) => {
+    removeFromCart(item);
+  };
 
-                </div>
+  const handleInputChange = (e) => {
+    setShippingInfo({
+      ...shippingInfo,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log(shippingInfo);
+  };
+
+  return (
+    <div className='checkout-main'>
+      <div className='checkout-now'>
+        <div>
+          <h4>Checkout</h4>
+          <h4>Shipping information</h4>
+          <form className='checkout-form' onSubmit={handleFormSubmit}>
+            <div className='inputs'>
+              <label htmlFor="name">Name *</label>
+              <div>
+                <input type="text" id="name" name="name" value={shippingInfo.name} onChange={handleInputChange} />
+              </div>
             </div>
+            <div className='inputs'>
+              <label htmlFor="email">Email *</label>
+              <input type="email" id="email" name="email" value={shippingInfo.email} onChange={handleInputChange} />
+            </div>
+            <div className='inputs'>
+              <label htmlFor="phone">Phone *</label>
+              <input type="text" id="phone" name="phone" value={shippingInfo.phone} onChange={handleInputChange} />
+            </div>
+            <div className='inputs'>
+              <label htmlFor="address">Address</label>
+              <input type="text" id="address" name="address" value={shippingInfo.address} onChange={handleInputChange} />
+            </div>
+            <button className="proceed-btn" type="submit">PROCEED</button>
+          </form>
         </div>
-    )
+        <div className='checkout-right'>
+          <h2>CART ({cartItems.length})</h2>
+          {cartItems.length > 0 ? (
+            <>
+              {cartItems.map((item) => (
+                <div key={item.product_id} className="checkout-item">
+                  <img className='checkout-img' src={item.image_path} alt={item.name} />
+                  <div>
+                    {item.name}
+                  </div>
+                  <button className='remove-btn' onClick={() => handleRemoveItem(item)}>
+                    <FaTrashAlt className='trash' /> Remove
+                  </button>
+                </div>
+              ))}
+              <div>
+                <h3>Cart Summary</h3>
+                <div className='checkout-subtotal'>
+                  <p>SUB TOTAL</p>
+                  <p>KES {getCartTotal()}</p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="empty-cart">
+              <p>Your cart is empty.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Checkout
+export default Checkout;
