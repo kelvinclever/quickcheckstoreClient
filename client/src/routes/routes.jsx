@@ -8,6 +8,7 @@ import Checkout from "../components/checkout/Checkout";
 import Help from "../help/Help";
 import Success from "../components/success/Success";
 import Landingpage from "../components/landingpage/Landingpage";
+import Admin from "../admin/Admin";
 import Products from "../components/product/Products";
 import ProductDetails from "../components/product/Product";
 export const router = createBrowserRouter(
@@ -22,8 +23,15 @@ export const router = createBrowserRouter(
                 <Route path="contact-us" element={<Contactus />} />
                 <Route path="products" element={<Products/>} />
                 <Route path="/products/single " element={< ProductDetails/>} />
+
                 
             </Route>
+            <Route path="/admin">
+                 <Route path="" element={<Admin/>} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+            </Route>
+
             <Route path="/auth">
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />

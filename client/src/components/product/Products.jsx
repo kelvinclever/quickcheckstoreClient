@@ -43,11 +43,11 @@ export default function Products() {
       <div className='products-container'>
         {products.map((product) => (
           <div key={product.product_id} className='product-content'>
-            <img src={product.image_path} alt={product.name} className='product-image' />
+            <img src={product.image_path} alt={product.product_name} className='product-image' />
             <div className='product-description'>
-              <h1 className='product-title'>{product.name}</h1>
-              <p className='product-dec'>{product.description.slice(0, 40)}...</p>
-              <p className='product-price'>${product.price}</p>
+              <h1 className='product-title'>{product.product_name}</h1>
+              <p className='product-dec'>{product.product_description.slice(0, 40)}...</p>
+              <p className='product-price'>${product.product_price}</p>
             </div>
             <div className='product-addbutton'>
               <button

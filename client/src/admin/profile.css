@@ -1,0 +1,29 @@
+.profile-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .profile-container h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .profile-container ul li {
+    margin-bottom: 10px;
+  }
+  
+  .profile-container ul li:first-child {
+    font-weight: bold;
+  }
+  
+  

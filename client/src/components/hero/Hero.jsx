@@ -5,6 +5,10 @@ import { Navigation } from "swiper/modules";
 import Paycard from "./Paycard.jsx";
 import Carousel from "./Carousel";
 import "./hero.css";
+import Categories from "../categories/Category.jsx";
+import Products from "../product/Products.jsx";
+
+
 const Hero = () => {
   const cards = [
     <SwiperSlide>
@@ -43,12 +47,7 @@ const Hero = () => {
     <div className="hero">
       <div className="hero-left">
         <div className="hero-categories">
-        <h4>Category 1</h4>
-    <div className="sub-categories">
-      <h5>Subcategory 1</h5>
-      <h5>Subcategory 2</h5>
-      <h5>Subcategory 3</h5>
-    </div>
+     <a href=""><Categories products={<Products/>}/></a> 
   </div>
   <div className="hero-categories">
     <h4>Category 2</h4>
