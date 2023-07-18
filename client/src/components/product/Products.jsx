@@ -37,9 +37,7 @@ export default function Products() {
 
   return (
     <div className='products'>
-      <div className='products-heading'>
-        <h1>Shop</h1>
-      </div>
+    
       <div className='products-container'>
         {products.map((product) => (
           <div key={product.product_id} className='product-content'>

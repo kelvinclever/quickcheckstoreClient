@@ -1,0 +1,46 @@
+/* herocategories.css */
+.hero-categories {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(90deg, white,orange, #fd5811);
+   
+   
+  }
+  
+  .cat-icon {
+    display: flex;
+     justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-inline:2rem ;
+    text-align: center;
+  }
+  
+  .cat-icon h2 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .cat-icon svg {
+    font-size: 18px;
+  }
+  .cat-icon:hover {
+    color: black;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .cat-icon:hover h2 {
+    color: #fd5811;
+  }
+  .cat-heading{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 3px solid;
+  
+  }
+  

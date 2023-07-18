@@ -6,9 +6,6 @@ const Landingpage = () => {
   return (
     <>
     <Hero/>
-    <div className="products">
-        <Products/>
-    </div>
     </>
 
   )

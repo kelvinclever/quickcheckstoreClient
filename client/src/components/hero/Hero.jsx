@@ -4,11 +4,9 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Paycard from "./Paycard.jsx";
 import Carousel from "./Carousel";
+import Newproducts from "./Newproducts.jsx";
 import "./hero.css";
-import Categories from "../categories/Category.jsx";
-import Products from "../product/Products.jsx";
-
-
+import Herocategories from "./Hero-categories.jsx";
 const Hero = () => {
   const cards = [
     <SwiperSlide>
@@ -44,48 +42,41 @@ const Hero = () => {
   ];
 
   return (
-    <div className="hero">
-      <div className="hero-left">
-        <div className="hero-categories">
-     <a href=""><Categories products={<Products/>}/></a> 
-  </div>
-  <div className="hero-categories">
-    <h4>Category 2</h4>
-    <div className="sub-categories">
-      <h5>Subcategory 1</h5>
-      <h5>Subcategory 2</h5>
-      <h5>Subcategory 3</h5>
-    </div>
+    <div className="container-hero">
+      <div className="hero">
+        <div className="hero-left">
+          <Herocategories />
         </div>
-      </div>
 
-      <div className="hero-center">
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          <SwiperSlide>
-            <Carousel cards={cards} />
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      <div className="hero-right">
-        <div className="hero-right-top"> 
-            
-        <div> 
-            <Paycard />
+        <div className="hero-center">
+          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            <SwiperSlide>
+              <Carousel cards={cards} />
+            </SwiperSlide>
+          </Swiper>
         </div>
-        <div> 
-            <Paycard />
-        </div>
-        <div> 
-            <Paycard />
-        </div>
-        
-        </div>
-        <div className="hero-right-bottom">
+        <div className="hero-right">
+          <div className="hero-right-top">
+            <div>
+              <Paycard />
+            </div>
+            <div>
+              <Paycard />
+            </div>
+            <div>
+              <Paycard />
+            </div>
+          </div>
+          <div className="hero-right-bottom">
             <span>smart payment for smart people</span>
-            <span><button>explore our products</button></span>
+            <span>
+              <button>explore our products</button>
+            </span>
+          </div>
         </div>
-       
-       
+      </div>
+      <div>
+        <Newproducts />
       </div>
     </div>
   );

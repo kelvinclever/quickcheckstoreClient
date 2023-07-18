@@ -2,6 +2,10 @@
     display: flex;
     padding: 1rem;
   }
+  .container-hero{
+    display: flex;
+    flex-direction:column;
+  }
   
   .navbar {
     z-index: 9999;
@@ -19,8 +23,8 @@
   .hero-left {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    border: 2px solid;
+    padding-block: 6px;
+  
   }
   
   .hero-categories {
@@ -67,10 +71,7 @@
     text-transform: uppercase;
   }
   .hero-left {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border: 2px solid;
+ 
   }
   
   .hero-categories {

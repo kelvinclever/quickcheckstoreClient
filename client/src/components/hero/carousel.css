@@ -5,13 +5,13 @@
     align-items: center;
   } 
   .carousel-button-left{
-    background-color: #FD5811;
+    background-color:transparent;
     height: 18rem;
     width: 3rem;
     border: none;
   }
   .carousel-button{
-    background-color: #FD5811;
+    background-color:transparent;
     height: 18rem;
     border: none;
   }
