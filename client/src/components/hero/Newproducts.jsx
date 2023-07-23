@@ -4,14 +4,14 @@ import Carousel from './Carousel.jsx'
 import Products from '../product/Products.jsx'
  
  const Newproducts=()=>{
-    const cards=[<Products/>]
+    const cards=[]
     return(
     <div className="newproducts">
         <div className='bar-product'>
-            <span className='flash-heading'>Flash  sales</span>
+            <span className='flash-heading'>Welcome , Start here</span>
         </div>
         <div className='flash-products'>
-           <Carousel cards={cards}/>
+        <Products/>
         </div>
     </div>
     )

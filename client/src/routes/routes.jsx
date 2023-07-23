@@ -11,6 +11,7 @@ import Landingpage from "../components/landingpage/Landingpage";
 import Admin from "../admin/Admin";
 import Products from "../components/product/Products";
 import ProductDetails from "../components/product/Product";
+import { Shop } from "../components/product/ShopContext";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>

@@ -6,9 +6,7 @@ const Contactus = () => {
             <div className="contact-us">
                 <div className='ctus'>
                     <div>
-                        <h1 className='logo'>
-                            QUICK CHECK STORE
-                        </h1>
+                       
                     </div>
                     <div className="contact-us-flex">
                         <div>

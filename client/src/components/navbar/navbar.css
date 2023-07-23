@@ -1,71 +1,98 @@
+/* navbar.css */
+
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
-    background-color: white;
-    border-bottom: 1px solid black;
-    align-items: center;
-    height: 15vh;
-  }
-  
-  .nav-bar .search input,
-  .nav-bar .search button {
-    padding: 1rem;
-    border: none;
-  }
-  
-  .search {
-    width: 56%;
-  }
-  
-  .nav-bar .search input {
-    width: 70%;
-    background-color: #ffe7d1;
-  }
-  
-  .nav-bar .search button {
-    background-color: #fd5811;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .nav-icons {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .help span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fd5811;
-  }
-  
-  #help-icon {
-    font-size: larger;
-    color: #fd5811;
-  }
-  .nav-bar {
-    display: flex;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
-    background-color: white;
-    border-bottom: 1px solid black;
-    align-items: center;
-    height: 15vh;
-    z-index: 9999; /* Set a higher z-index value */
-  }
-  
-  /* Rest of the navbar CSS */
-  
-  .hero-center {
-    width: 50%;
-    position: relative; /* Add position relative */
-    z-index: 1; /* Add a z-index value */
-  }
-  
-  /* Rest of the hero CSS */
-  
-  
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid black;
+  align-items: center;
+  height: 15vh;
+  z-index: 9999; /* Set a higher z-index value */
+}
+
+.nav-bar .search input,
+.nav-bar .search button {
+  padding: 1rem;
+  border: none;
+}
+
+.search {
+  width: 56%;
+  display: flex;
+}
+
+.nav-bar .search input {
+  width: 70%;
+  background-color: #ffe7d1;
+}
+
+.nav-bar .search button {
+  background-color: #fd5811;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.help span {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #fd5811;
+  text-decoration: none;
+
+}
+#help-icon {
+  font-size: larger;
+  color: #fd5811;
+}
+.nav-icons p a{
+  text-decoration: none;
+}
+.hero-center {
+  width: 50%;
+  position: relative; /* Add position relative */
+  z-index: 1; /* Add a z-index value */
+}
+
+/* Add any additional styles you want for other components */
+
+/* Styles for the account dropdown */
+
+.help {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color:#fd5811;
+  text-decoration: none;
+}
+
+
+
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.account-dropdown a {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.account-dropdown a:hover {
+  background-color: #f7f7f7;
+}
