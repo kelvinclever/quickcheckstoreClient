@@ -1,18 +1,18 @@
 import { createContext, useEffect, useReducer } from "react";
-import Reducer from "./Reducer";
-
+import Reducer from "./Reducer.jsx";
+//initial state for user obj
 const INITIAL_STATE = {
-    ui: JSON.parse(localStorage.getItem("ui")) || 'profile'
+    ui: JSON.parse(localStorage.getItem("ui")) || ''
 }
-
-export const Shop= createContext(INITIAL_STATE);
-
-export const UIShopProvider = ({ children }) => {
+//declare createContext
+export const Context = createContext(INITIAL_STATE);
+//declare createContext
+export const UIContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)
     useEffect(() => {
         localStorage.setItem("ui", JSON.stringify(state.ui))
     }, [state.ui])
-    return <Shop.Provider value={{ ui: state.ui, dispatch }}>
+    return <Context.Provider value={{ ui: state.ui, dispatch }}>
         {children}
-    </Shop.Provider>
+    </Context.Provider>
 }

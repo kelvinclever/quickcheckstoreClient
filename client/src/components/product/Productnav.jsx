@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Shop } from "./ShopContext";
+import { Context } from "./shopContext.jsx";
 const Productnav = () => {
-  const { ui } = useContext(Shop);
+  const { ui } = useContext(Context);
   console.log(ui);
   return (
     <div className="productnav">

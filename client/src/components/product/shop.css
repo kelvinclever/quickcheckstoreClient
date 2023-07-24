@@ -1,0 +1,13 @@
+
+.shop{
+    display:flex;
+    flex-direction: row;
+    background-color:whitesmoke;
+
+}
+.categoryside{
+    display: flex;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+}

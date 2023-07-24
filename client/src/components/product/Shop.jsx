@@ -4,8 +4,12 @@ import "./shop.css";
 const Shop = () => {
   return (
     <div className="shop">
-    <Categorynav/>
-    <Productnav/>
+      <div className="categoryside">
+        <Categorynav />
+      </div>
+      <div>
+        <Productnav />
+      </div>
     </div>
   );
 };

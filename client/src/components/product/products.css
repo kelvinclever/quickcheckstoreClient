@@ -1,70 +1,121 @@
 /* products.css */
 
-/* .products {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
-  justify-items: center;
-} */
-
-.products-container {
-  display: grid;
-  grid-template-columns:1fr 1fr 1fr 1fr ;
-  margin-top: 20px;
-  padding: 1rem;
-}
-
-.products-heading {
-  text-align: center;
-  margin-bottom: 20px;
-}
+/* ... (previous styles) */
 
 .product-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  /* ... (other styles) */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.product-image {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
+.product-content:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .product-title {
   font-size: 18px;
+  font-weight: bold;
   margin-bottom: 5px;
+  color: #333;
 }
 
 .product-dec {
   font-size: 14px;
-  margin-bottom: 5px;
+  color: #555;
+  margin-bottom: 10px;
 }
 
 .product-price {
   font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  color: #fd5811; /* Orange color for the price */
+  margin-bottom: 5px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.product-sale-price {
+  font-size: 18px;
+  color: #fd5811; /* Orange color for the sale price */
+  margin-bottom: 5px;
+}
+
+.product-discount {
+  font-size: 14px;
+  color: #27ae60;
+  margin-bottom: 5px;
+}
+
+.product-addbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonadd {
-  padding: 8px 16px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
   font-size: 14px;
-  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
-.add {
-  background-color: orangered;
-  color: white;
+.buttonadd.add {
+  background-color: #fd5811; /* Orange color for "Add to cart" button */
+  color: #fff;
 }
 
-.remove {
-  background-color: red;
-  color: white;
+.buttonadd.remove {
+  background-color: black; /* Black color for "Remove from cart" button */
+  color: #fff;
 }
+
+.buttonadd.add:hover,
+.buttonadd.remove:hover {
+  background-color: #d94700; /* Slightly darker orange for button hover effect */
+  color: #fff;
+  transform: scale(1.1);
+}
+/* products.css */
+
+/* ... (previous styles) */
+
+.product-content {
+  /* ... (other styles) */
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-content:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+/* Positioning and styling for the discount */
+.product-discount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #e74c3c; /* Red color for the discount */
+  font-weight: bold;
+}
+
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #fd5811;
+}
+
+

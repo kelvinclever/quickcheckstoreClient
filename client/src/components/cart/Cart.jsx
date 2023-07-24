@@ -32,7 +32,7 @@ const Cart = () => {
             cartItems.map((item) => (
               <div key={item.product_id} className="cart-item">
                 <div className="cart-img">
-                  <img src={item.product_image} alt={item.name} />
+                  <img src={item.ProductImage} alt={item.name} />
                   <p>{item.name}</p>
                 </div>
                 <button className="remove-btn" onClick={() => handleRemoveItem(item)}>
@@ -40,7 +40,13 @@ const Cart = () => {
                 </button>
                 <div className="cart-left-amount">
                   <div>
-                    <p>{item.price}</p>
+                    {item.SalePrice ? (
+                      <p>
+                        <span className="original-price">Price: {item.Price}</span> | Sale Price: {item.SalePrice}
+                      </p>
+                    ) : (
+                      <p>Price: {item.Price}</p>
+                    )}
                   </div>
                   <div className="cart-left-btns">
                     <button className="cart-btn" onClick={() => handleDecrement(item)}>

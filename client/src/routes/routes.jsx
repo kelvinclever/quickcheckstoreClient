@@ -11,7 +11,7 @@ import Landingpage from "../components/landingpage/Landingpage";
 import Admin from "../admin/Admin";
 import Products from "../components/product/Products";
 import ProductDetails from "../components/product/Product";
-import { Shop } from "../components/product/ShopContext";
+import Shop from "../components/product/Shop";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -22,7 +22,7 @@ export const router = createBrowserRouter(
                 <Route path="help" element={<Help/>} />
                 <Route path="success" element={<Success/>} />
                 <Route path="contact-us" element={<Contactus />} />
-                <Route path="products" element={<Products/>} />
+                <Route path="products" element={<Shop/>} />
                 <Route path="/products/single " element={< ProductDetails/>} />
 
                 

@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 //declare createContext
 export const Context = createContext(INITIAL_STATE);
 //declare createContext
-export const UIContextProvider = ({ children }) => {
+export const AdminContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)
     useEffect(() => {
         localStorage.setItem("ui", JSON.stringify(state.ui))
