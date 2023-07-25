@@ -1,7 +1,8 @@
  
 import './newproducts.css'
-import Carousel from './Carousel.jsx'
-import Products from '../product/Products.jsx'
+
+import Bestprice from './Bestprice'
+import Products from '../product/Products'
  
  const Newproducts=()=>{
     const cards=[]
@@ -11,7 +12,7 @@ import Products from '../product/Products.jsx'
             <span className='flash-heading'>Welcome , Start here</span>
         </div>
         <div className='flash-products'>
-        <Products/>
+        <Bestprice/>
         </div>
     </div>
     )

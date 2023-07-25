@@ -5,9 +5,10 @@ import { Context } from './admincontext/Context'
 import Customers from './Customers'
 import UserAdmin from './UserAdmin.jsx'
 import Profile from './Profile'
+import AddProductForm from './Addproduct'
 const Mainnav=()=>{
     const {ui}=useContext(Context)
-    console.log(ui)
+  
     return(
         <div className="mainnav">
             { 
@@ -24,7 +25,7 @@ const Mainnav=()=>{
             </div> 
             ):ui=="orders"?(
                 <div>
-                <h1>orders</h1>
+              <AddProductForm/>
             </div> 
             ): ui=="admins"?(
                 <div>

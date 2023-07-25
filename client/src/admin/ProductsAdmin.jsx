@@ -7,19 +7,20 @@ export default function ProductsAdmin() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [newProduct, setNewProduct] = useState({
-    ProductID: null,
-    ProductName: '',
-    Description: '',
-    Price: '',
-    SalePrice: '',
-    ProductImage: '',
-    BrandName: '',
-    CategoryName: '',
-    Size: '',
-    Color: '',
-    StockQuantity: '',
-    PriceAdjustment: '',
+    name: '',
+    brand: '',
+    category: '',
+    description: '',
+    price: 0,
+    salePrice:0 ,
+    stockQuantity: 0,
+    images: '',
+    variations: [{
+      Size:'',
+      color:'',
+    }],
   });
+
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Pagination variables
@@ -73,64 +74,27 @@ export default function ProductsAdmin() {
 
   const addProduct = async () => {
     try {
-      let response;
-      if (newProduct.ProductID) {
-        // If ProductID exists, update the existing product
-        response = await fetch(`http://localhost:8082/products/${newProduct.ProductID}/update`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newProduct),
-        });
-      } else {
-        // Otherwise, add a new product
-        response = await fetch('http://localhost:8082/products/new', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newProduct),
-        });
-      }
-
+      const response = await fetch('http://localhost:8082/products/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      });
+  
       if (response.ok) {
         const data = await response.json();
-        if (newProduct.ProductID) {
-          // If product was updated, update the products array with the updated product
-          setProducts((prevProducts) =>
-            prevProducts.map((product) =>
-              product.ProductID === newProduct.ProductID ? data : product
-            )
-          );
-          toast.success('Product updated successfully!');
-        } else {
-          // If new product was added, add it to the products array
-          setProducts((prevProducts) => [...prevProducts, data]);
-          toast.success('Product added successfully!');
-        }
-        setNewProduct({
-          ProductID: null,
-          ProductName: '',
-          Description: '',
-          Price: '',
-          SalePrice: '',
-          ProductImage: '',
-          BrandName: '',
-          CategoryName: '',
-          Size: '',
-          Color: '',
-          StockQuantity: '',
-          PriceAdjustment: '',
-        });
+        console.log('Product added successfully:', data.message);
+        // You can perform additional actions here, such as updating the product list on success
       } else {
-        toast.error('Failed to add/update product');
+        const error = await response.json();
+        console.error('Failed to add product:', error.error);
       }
     } catch (error) {
-      console.error('Error adding/updating product:', error);
+      console.error('Error adding product:', error);
     }
   };
-
+  
   const handleNewProductChange = (e) => {
     e.preventDefault();
     setNewProduct((prevProduct) => ({
@@ -138,11 +102,115 @@ export default function ProductsAdmin() {
       [e.target.name]: e.target.value,
     }));
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addProduct(newProduct);
+  };
 
   // Helper function to change the current page
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  const [showForm, setShowForm] = useState(false);
+
+  const addProductForm = (
+    <div className='product-form'>
+      <h2>{newProduct.ProductID ? 'Edit Product' : 'Add Product'}</h2>
+      <form onSubmit={handleSubmit} >
+        <label>Product Name:</label>
+        <input
+          type='text'
+          name='ProductName'
+          value={newProduct.ProductName}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Description:</label>
+        <textarea
+          name='Description'
+          value={newProduct.Description}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Price:</label>
+        <input
+          type='text'
+          name='Price'
+          value={newProduct.Price}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Sale Price:</label>
+        <input
+          type='number'
+          name='SalePrice'
+          value={newProduct.SalePrice}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Stock Quantity:</label>
+        <input
+          type='number'
+          name='StockQuantity'
+          value={newProduct.StockQuantity}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Product Image:</label>
+        <input
+          type='text'
+          name='ProductImage'
+          value={newProduct.ProductImage}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Brand Name:</label>
+        <input
+          type='text'
+          name='BrandName'
+          value={newProduct.BrandName}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Category Name:</label>
+        <input
+          type='text'
+          name='CategoryName'
+          value={newProduct.CategoryName}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Size:</label>
+        <input
+          type='text'
+          name='Size'
+          value={newProduct.Size}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Color:</label>
+        <input
+          type='text'
+          name='Color'
+          value={newProduct.Color}
+          onChange={handleNewProductChange}
+        />
+
+        <label>Price Adjustment:</label>
+        <input
+          type='text'
+          name='PriceAdjustment'
+          value={newProduct.PriceAdjustment}
+          onChange={handleNewProductChange}
+        />
+
+        <button type='button' onClick={addProduct}>
+          {newProduct.ProductID ? 'Update' : 'Add'}
+        </button>
+      </form>
+    </div>
+  );
 
   return (
     <div className='products'>
@@ -156,41 +224,12 @@ export default function ProductsAdmin() {
             onChange={(e) => searchProducts(e.target.value)}
           />
         </div>
+        <button className='add-button' onClick={() => setShowForm(!showForm)}>
+          {showForm ? 'Cancel' : 'Add'}
+        </button>
       </div>
       <div className='products-container'>
-        <div className='new-product-form'>
-          <input
-            type='text'
-            name='ProductName'
-            placeholder='Name'
-            value={newProduct.ProductName}
-            onChange={handleNewProductChange}
-          />
-          <input
-            type='text'
-            name='Description'
-            placeholder='Description'
-            value={newProduct.Description}
-            onChange={handleNewProductChange}
-          />
-          <input
-            type='number'
-            name='Price'
-            placeholder='Price'
-            value={newProduct.Price}
-            onChange={handleNewProductChange}
-          />
-          <input
-            type='text'
-            name='ProductImage'
-            placeholder='Image Path'
-            value={newProduct.ProductImage}
-            onChange={handleNewProductChange}
-          />
-          <button className='add-button' onClick={addProduct}>
-            {newProduct.ProductID ? 'Update Product' : 'Add New Product'}
-          </button>
-        </div>
+        {showForm && addProductForm}
       </div>
       <div className='products_content'>
         {currentProducts.length === 0 && searchTerm ? (

@@ -1,0 +1,45 @@
+/* bestprice.css */
+
+/* Style for the container holding the carousel */
+.carousel-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Style for the individual carousel items */
+  .carousel-item-padding-40-px {
+    padding: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid; /* Use CSS Grid Layout */
+    grid-template-columns: repeat(4, 1fr); /* Create a grid with 4 columns */
+    gap: 20px; /* Add some space between the grid items */
+  }
+  
+  /* Style for the carousel navigation dots */
+  .custom-dot-list-style {
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  /* Style for the carousel navigation dots (inactive) */
+  .custom-dot-list-style li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  /* Style for the carousel navigation dots (active) */
+  .custom-dot-list-style li.active {
+    background-color: #007bff; /* Change to your desired active dot color */
+  }
+  

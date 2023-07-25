@@ -17,7 +17,9 @@
   padding: 1rem;
   border: none;
 }
-
+.search input{
+  margin-top: 1rem;
+}
 .search {
   width: 56%;
   display: flex;
@@ -33,7 +35,9 @@
   color: #fff;
   cursor: pointer;
 }
-
+.search {
+  padding: 0;
+}
 .nav-icons {
   display: flex;
   justify-content: center;

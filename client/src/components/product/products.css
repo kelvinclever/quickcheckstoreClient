@@ -113,9 +113,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 200px;
   font-size: 18px;
   color: #fd5811;
 }
+.products-container{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 4rem;
+}
+
 
 

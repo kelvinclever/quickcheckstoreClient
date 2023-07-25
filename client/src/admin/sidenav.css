@@ -1,6 +1,7 @@
 .sidenav {
     background-color: #f1f1f1;
-    width: 200px;
+    width: auto;
+    height: auto;
     padding: 10px;
   }
   
