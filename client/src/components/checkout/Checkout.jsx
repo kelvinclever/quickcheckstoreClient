@@ -2,6 +2,8 @@ import './checkout.css'
 import { FaTrashAlt } from "react-icons/fa";
 import { useContext, useState } from 'react';
 import { CartContext } from '../cart/Cartcontext';
+import Cart from '../cart/Cart';
+import CheckOut from '../Payment/Checkout';
 const Checkout = () => {
   const { cartItems, getCartTotal, removeFromCart } = useContext(CartContext);
   const [shippingInfo, setShippingInfo] = useState({
@@ -77,6 +79,7 @@ const Checkout = () => {
                   <p>SUB TOTAL</p>
                   <p>KES {getCartTotal()}</p>
                 </div>
+                <CheckOut cartItems = {Cart.cartItems}/>
               </div>
             </>
           ) : (

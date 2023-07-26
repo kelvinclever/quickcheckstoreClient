@@ -7,34 +7,32 @@ export default function ProductsAdmin() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [newProduct, setNewProduct] = useState({
-    name: '',
-    brand: '',
-    category: '',
-    description: '',
-    price: 0,
-    salePrice:0 ,
-    stockQuantity: 0,
-    images: '',
-    variations: [{
-      Size:'',
-      color:'',
-    }],
+    ProductName: '',
+    Description: '',
+    Price: 0,
+    SalePrice: 0,
+    StockQuantity: 0,
+    ProductImage: '',
+    BrandName: '',
+    CategoryName: '',
+    Size: '',
+    Color: '',
+    PriceAdjustment: '',
   });
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Pagination variables
-  const itemsPerPage = 10;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalProducts = filteredProducts.length;
-  const totalPages = Math.ceil(totalProducts / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentProducts = filteredProducts.slice(startIndex, endIndex);
-
   useEffect(() => {
     getProducts();
   }, []);
+
+  useEffect(() => {
+    // Filter the products whenever the searchTerm changes
+    const filteredProducts = products.filter((product) =>
+      product.ProductName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filteredProducts);
+  }, [products, searchTerm]);
 
   async function getProducts() {
     try {
@@ -51,9 +49,16 @@ export default function ProductsAdmin() {
       await fetch(`http://localhost:8082/products/${productId}/delete`, {
         method: 'DELETE',
       });
+
+      // Update the products state by removing the deleted product
       setProducts((prevProducts) => prevProducts.filter((product) => product.ProductID !== productId));
+
+      // Update the filteredProducts state as well by removing the deleted product
+      setFilteredProducts((prevFilteredProducts) =>
+        prevFilteredProducts.filter((product) => product.ProductID !== productId)
+      );
+
       toast.success('Product deleted successfully!');
-      getProducts();
     } catch (error) {
       console.error('Error deleting product:', error);
     }
@@ -66,10 +71,6 @@ export default function ProductsAdmin() {
 
   const searchProducts = (searchTerm) => {
     setSearchTerm(searchTerm);
-    const filteredProducts = products.filter((product) =>
-      product.ProductName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(filteredProducts);
   };
 
   const addProduct = async () => {
@@ -81,136 +82,40 @@ export default function ProductsAdmin() {
         },
         body: JSON.stringify(newProduct),
       });
-  
+
       if (response.ok) {
-        const data = await response.json();
-        console.log('Product added successfully:', data.message);
-        // You can perform additional actions here, such as updating the product list on success
+        toast.success('Product added successfully!');
+        setNewProduct({
+          ProductName: '',
+          Description: '',
+          Price: 0,
+          SalePrice: 0,
+          StockQuantity: 0,
+          ProductImage: '',
+          BrandName: '',
+          CategoryName: '',
+          Size: '',
+          Color: '',
+          PriceAdjustment: '',
+        });
+        getProducts(); // Refresh the product list after adding a new product
       } else {
         const error = await response.json();
-        console.error('Failed to add product:', error.error);
+        toast.error(`Failed to add product: ${error.error}`);
       }
     } catch (error) {
       console.error('Error adding product:', error);
+      toast.error('Failed to add product.');
     }
   };
-  
+
   const handleNewProductChange = (e) => {
-    e.preventDefault();
+    const { name, value } = e.target;
     setNewProduct((prevProduct) => ({
       ...prevProduct,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addProduct(newProduct);
-  };
-
-  // Helper function to change the current page
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const [showForm, setShowForm] = useState(false);
-
-  const addProductForm = (
-    <div className='product-form'>
-      <h2>{newProduct.ProductID ? 'Edit Product' : 'Add Product'}</h2>
-      <form onSubmit={handleSubmit} >
-        <label>Product Name:</label>
-        <input
-          type='text'
-          name='ProductName'
-          value={newProduct.ProductName}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Description:</label>
-        <textarea
-          name='Description'
-          value={newProduct.Description}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Price:</label>
-        <input
-          type='text'
-          name='Price'
-          value={newProduct.Price}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Sale Price:</label>
-        <input
-          type='number'
-          name='SalePrice'
-          value={newProduct.SalePrice}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Stock Quantity:</label>
-        <input
-          type='number'
-          name='StockQuantity'
-          value={newProduct.StockQuantity}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Product Image:</label>
-        <input
-          type='text'
-          name='ProductImage'
-          value={newProduct.ProductImage}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Brand Name:</label>
-        <input
-          type='text'
-          name='BrandName'
-          value={newProduct.BrandName}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Category Name:</label>
-        <input
-          type='text'
-          name='CategoryName'
-          value={newProduct.CategoryName}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Size:</label>
-        <input
-          type='text'
-          name='Size'
-          value={newProduct.Size}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Color:</label>
-        <input
-          type='text'
-          name='Color'
-          value={newProduct.Color}
-          onChange={handleNewProductChange}
-        />
-
-        <label>Price Adjustment:</label>
-        <input
-          type='text'
-          name='PriceAdjustment'
-          value={newProduct.PriceAdjustment}
-          onChange={handleNewProductChange}
-        />
-
-        <button type='button' onClick={addProduct}>
-          {newProduct.ProductID ? 'Update' : 'Add'}
-        </button>
-      </form>
-    </div>
-  );
 
   return (
     <div className='products'>
@@ -224,20 +129,39 @@ export default function ProductsAdmin() {
             onChange={(e) => searchProducts(e.target.value)}
           />
         </div>
-        <button className='add-button' onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancel' : 'Add'}
+        <button className='add-button' onClick={() => setNewProduct({})}>
+          Add
         </button>
       </div>
-      <div className='products-container'>
-        {showForm && addProductForm}
-      </div>
-      <div className='products_content'>
-        {currentProducts.length === 0 && searchTerm ? (
+      <div className='products-content'>
+        {Object.keys(newProduct).length > 0 && (
+          <div className='product-form'>
+            <h2>{newProduct.ProductID ? 'Edit Product' : 'Add Product'}</h2>
+            <form>
+              <label>Product Name:</label>
+              <input
+                type='text'
+                name='ProductName'
+                value={newProduct.ProductName}
+                onChange={handleNewProductChange}
+              />
+
+              {/* Add other input fields for product properties */}
+
+              <button type='button' onClick={addProduct}>
+                {newProduct.ProductID ? 'Update' : 'Add'}
+              </button>
+            </form>
+          </div>
+        )}
+
+        {filteredProducts.length === 0 && searchTerm ? (
           <div className='no-products'>No products found.</div>
         ) : (
           <table>
             <thead>
               <tr>
+                {/* Add table headers for product properties */}
                 <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Description</th>
@@ -254,8 +178,9 @@ export default function ProductsAdmin() {
               </tr>
             </thead>
             <tbody>
-              {currentProducts.map((product) => (
+              {filteredProducts.map((product) => (
                 <tr key={product.ProductID}>
+                  {/* Add table data for product properties */}
                   <td>{product.ProductID}</td>
                   <td>{product.ProductName}</td>
                   <td>{product.Description}</td>
@@ -265,25 +190,9 @@ export default function ProductsAdmin() {
                   <td>{product.ProductImage}</td>
                   <td>{product.BrandName}</td>
                   <td>{product.CategoryName}</td>
-               
-                  <td>
-        {product.Variations
-          .filter((variation) => variation.VariationName === 'Size')
-          .map((variation) => variation.VariationValues.AttributeValue)
-          .join(', ') || "no size provided"}
-      </td>
-      <td>
-        {product.Variations
-          .filter((variation) => variation.VariationName === 'Color')
-          .map((variation) => variation.VariationValues.AttributeValue)
-          .join(', ')|| "no color provided"}
-      </td>
-      <td>
-        {product.Variations
-          .filter((variation) => variation.VariationName === 'Color')
-          .map((variation) => variation.StockQuantity)
-          .join(', ') || "no price for variation"}
-      </td>
+                  <td>{product.Size}</td>
+                  <td>{product.Color}</td>
+                  <td>{product.PriceAdjustment}</td>
                   <td>
                     <button className='edit-button' onClick={() => editProduct(product.ProductID)}>
                       Edit
@@ -296,20 +205,6 @@ export default function ProductsAdmin() {
               ))}
             </tbody>
           </table>
-        )}
-
-        {totalProducts > itemsPerPage && (
-          <div className='pagination'>
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index + 1}
-                className={`page-btn ${currentPage === index + 1 ? 'active' : ''}`}
-                onClick={() => handlePageChange(index + 1)}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
         )}
       </div>
       <ToastContainer />

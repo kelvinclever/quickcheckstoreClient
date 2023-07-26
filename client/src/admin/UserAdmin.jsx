@@ -4,17 +4,17 @@ import "react-toastify/dist/ReactToastify.css";
 import "./customers.css";
 
 export default function UserAdmin() {
-  const [admins, setAdmins] = useState([]);
+  const [admin, setAdmin] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [newAdmin, setNewAdmin] = useState({
     id: null,
-    first_name: "",
-    last_name: "",
+    FirstName: "",
+    LastName: "",
     email: "",
     username: "",
     password: "",
   });
-  const [filteredAdmins, setFilteredAdmins] = useState([]);
+  const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [usernameError, setUsernameError] = useState(false);
 
   useEffect(() => {
@@ -23,10 +23,10 @@ export default function UserAdmin() {
 
   async function getAdmins() {
     try {
-      const response = await fetch("http://localhost:3000/admins");
-      const { admin } = await response.json(); // Update the property name to 'admin'
-      setAdmins(admin);
-      setFilteredAdmins(admin);
+      const response = await fetch("http://localhost:3000/admin");
+      const data = await response.json();
+      setAdmin(data.admin);
+      setFilteredAdmin(data.admin);
     } catch (error) {
       console.error("Error fetching admins:", error);
     }
@@ -39,7 +39,7 @@ export default function UserAdmin() {
         return;
       }
 
-      const existingAdmin = admins.find(
+      const existingAdmin = admin.find(
         (admin) => admin.username === newAdmin.username
       );
 
@@ -48,7 +48,7 @@ export default function UserAdmin() {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/admins/new", {
+      const response = await fetch("http://localhost:3000/admin/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,13 +58,13 @@ export default function UserAdmin() {
 
       if (response.ok) {
         const addedAdmin = await response.json();
-        setAdmins((prevAdmins) => [...prevAdmins, addedAdmin]);
-        setFilteredAdmins((prevAdmins) => [...prevAdmins, addedAdmin]);
+        setAdmin((prevAdmin) => [...prevAdmin, addedAdmin]);
+        setFilteredAdmin((prevAdmin) => [...prevAdmin, addedAdmin]);
         toast.success("Admin added successfully!");
         setNewAdmin({
           id: null,
-          first_name: "",
-          last_name: "",
+          FirstName: "",
+          LastName: "",
           email: "",
           username: "",
           password: "",
@@ -79,14 +79,14 @@ export default function UserAdmin() {
 
   const deleteAdmin = async (id) => {
     try {
-      await fetch(`http://localhost:3000/admins/${id}/delete`, {
+      await fetch(`http://localhost:3000/admin/${id}/delete`, {
         method: "DELETE",
       });
-      setAdmins((prevAdmins) =>
-        prevAdmins.filter((admin) => admin.id !== id)
+      setAdmin((prevAdmin) =>
+        prevAdmin.filter((admin) => admin.id !== id)
       );
-      setFilteredAdmins((prevAdmins) =>
-        prevAdmins.filter((admin) => admin.id !== id)
+      setFilteredAdmin((prevAdmin) =>
+        prevAdmin.filter((admin) => admin.id !== id)
       );
       toast.success("Admin deleted successfully!");
     } catch (error) {
@@ -95,7 +95,7 @@ export default function UserAdmin() {
   };
 
   const editAdmin = (id) => {
-    const adminToEdit = admins.find((admin) => admin.id === id);
+    const adminToEdit = admin.find((admin) => admin.id === id);
     if (adminToEdit) {
       setNewAdmin(adminToEdit);
     } else {
@@ -105,13 +105,13 @@ export default function UserAdmin() {
 
   const searchAdmins = (searchTerm) => {
     setSearchTerm(searchTerm);
-    const filteredAdmins = admins.filter(
+    const filteredAdmin = admin.filter(
       (admin) =>
-        `${admin.first_name} ${admin.last_name}`
+        `${admin.FirstName} ${admin.LastName}`
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
     );
-    setFilteredAdmins(filteredAdmins);
+    setFilteredAdmin(filteredAdmin);
   };
 
   const updateAdmin = async () => {
@@ -122,7 +122,7 @@ export default function UserAdmin() {
       }
 
       const response = await fetch(
-        `http://localhost:3000/admins/${newAdmin.id}/update`,
+        `http://localhost:3000/admin/${newAdmin.id}/update`,
         {
           method: "PUT",
           headers: {
@@ -134,21 +134,21 @@ export default function UserAdmin() {
 
       if (response.ok) {
         const updatedAdmin = await response.json();
-        setAdmins((prevAdmins) =>
-          prevAdmins.map((admin) =>
+        setAdmin((prevAdmin) =>
+          prevAdmin.map((admin) =>
             admin.id === updatedAdmin.id ? updatedAdmin : admin
           )
         );
-        setFilteredAdmins((prevAdmins) =>
-          prevAdmins.map((admin) =>
+        setFilteredAdmin((prevAdmin) =>
+          prevAdmin.map((admin) =>
             admin.id === updatedAdmin.id ? updatedAdmin : admin
           )
         );
         toast.success("Admin updated successfully!");
         setNewAdmin({
           id: null,
-          first_name: "",
-          last_name: "",
+          FirstName: "",
+          LastName: "",
           email: "",
           username: "",
           password: "",
@@ -183,16 +183,16 @@ export default function UserAdmin() {
         <div className="add-form">
           <input
             type="text"
-            name="first_name"
+            name="FirstName"
             placeholder="First Name"
-            value={newAdmin.first_name}
+            value={newAdmin.FirstName}
             onChange={handleNewAdminChange}
           />
           <input
             type="text"
-            name="last_name"
+            name="LastName"
             placeholder="Last Name"
-            value={newAdmin.last_name}
+            value={newAdmin.LastName}
             onChange={handleNewAdminChange}
           />
           <input
@@ -234,31 +234,31 @@ export default function UserAdmin() {
             </tr>
           </thead>
           <tbody>
-            {filteredAdmins && filteredAdmins.length > 0 ? (
-              filteredAdmins.map((admin) => (
+            {filteredAdmin && filteredAdmin.length > 0 ? (
+              filteredAdmin.map((admin) => (
                 <tr key={admin.id}>
                   <td>
                     {admin.id === newAdmin.id ? (
                       <input
                         type="text"
-                        name="first_name"
-                        value={newAdmin.first_name}
+                        name="FirstName"
+                        value={newAdmin.FirstName}
                         onChange={handleNewAdminChange}
                       />
                     ) : (
-                      admin.first_name
+                      admin.FirstName
                     )}
                   </td>
                   <td>
                     {admin.id === newAdmin.id ? (
                       <input
                         type="text"
-                        name="last_name"
-                        value={newAdmin.last_name}
+                        name="LastName"
+                        value={newAdmin.LastName}
                         onChange={handleNewAdminChange}
                       />
                     ) : (
-                      admin.last_name
+                      admin.LastName
                     )}
                   </td>
                   <td>

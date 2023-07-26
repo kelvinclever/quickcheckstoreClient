@@ -1,128 +1,122 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./customers.css";
 
 export default function Customers() {
-  const [customers, setCustomers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [newCustomer, setNewCustomer] = useState({
-    customer_id: null,
-    first_name: "",
-    last_name: "",
-    phone_number: "",
-    email: "",
-    password: "",
+  const [newUser, setNewUser] = useState({
+    UserID: null,
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    Password: "",
+    PhoneNumber: "",
   });
-  const [filteredCustomers, setFilteredCustomers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    getCustomers();
+    getUsers();
   }, []);
 
-  async function getCustomers() {
+  async function getUsers() {
     try {
       const response = await fetch("http://localhost:8082/customers");
       const data = await response.json();
-      setCustomers(data.customers);
-      setFilteredCustomers(data.customers); // Set filteredCustomers initially with all customers
+      setUsers(data.users);
+      setFilteredUsers(data.users); // Set filteredUsers initially with all users
     } catch (error) {
-      console.error("Error fetching customers:", error);
+      console.error("Error fetching users:", error);
     }
   }
 
-  const deleteCustomer = async (customerId) => {
+  const deleteUser = async (userId) => {
     try {
-      await fetch(`http://localhost:3000/customers/${customerId}/delete`, {
+      await fetch(`http://localhost:8082/customers/${userId}/delete`, {
         method: "DELETE",
       });
-      setCustomers((prevCustomers) =>
-        prevCustomers.filter((customer) => customer.customer_id !== customerId)
+      setUsers((prevUsers) =>
+        prevUsers.filter((user) => user.UserID !== userId)
       );
-      setFilteredCustomers((prevCustomers) =>
-        prevCustomers.filter((customer) => customer.customer_id !== customerId)
+      setFilteredUsers((prevUsers) =>
+        prevUsers.filter((user) => user.UserID !== userId)
       );
-      toast.success("Customer deleted successfully!");
+      toast.success("User deleted successfully!");
     } catch (error) {
-      console.error("Error deleting customer:", error);
+      console.error("Error deleting user:", error);
     }
   };
 
-  const editCustomer = (customerId) => {
-    const customerToEdit = customers.find(
-      (customer) => customer.customer_id === customerId
-    );
-    if (customerToEdit) {
-      setNewCustomer(customerToEdit);
+  const editUser = (userId) => {
+    const userToEdit = users.find((user) => user.UserID === userId);
+    if (userToEdit) {
+      setNewUser(userToEdit);
     } else {
-      toast.error("Customer not found.");
+      toast.error("User not found.");
     }
   };
 
-  const searchCustomers = (searchTerm) => {
+  const searchUsers = (searchTerm) => {
     setSearchTerm(searchTerm);
-    const filteredCustomers = customers.filter((customer) =>
-      `${customer.first_name} ${customer.last_name}`
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+    const filteredUsers = users.filter(
+      (user) =>
+        `${user.FirstName} ${user.LastName}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
     );
-    setFilteredCustomers(filteredCustomers);
+    setFilteredUsers(filteredUsers);
   };
-
-  const updateCustomer = async () => {
+  const updateUser = async () => {
     try {
-      if (!newCustomer.customer_id) {
-        toast.error("Customer ID is required for updating a customer.");
+      if (!newUser.UserID) {
+        toast.error("User ID is required for updating a user.");
         return;
       }
-
+  
       const response = await fetch(
-        `http://localhost:3000/customers/${newCustomer.customer_id}/update`,
+        `http://localhost:8082/customers/${newUser.UserID}/update`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newCustomer),
+          body: JSON.stringify(newUser),
         }
       );
-
+  
       if (response.ok) {
-        const updatedCustomer = await response.json();
-        setCustomers((prevCustomers) =>
-          prevCustomers.map((customer) =>
-            customer.customer_id === updatedCustomer.customer_id
-              ? updatedCustomer
-              : customer
+        setUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.UserID === newUser.UserID ? { ...user, ...newUser } : user
           )
         );
-        setFilteredCustomers((prevCustomers) =>
-          prevCustomers.map((customer) =>
-            customer.customer_id === updatedCustomer.customer_id
-              ? updatedCustomer
-              : customer
+        setFilteredUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.UserID === newUser.UserID ? { ...user, ...newUser } : user
           )
         );
-        toast.success("Customer updated successfully!");
-        setNewCustomer({
-          customer_id: null,
-          first_name: "",
-          last_name: "",
-          phone_number: "",
-          email: "",
-          password: "",
+        toast.success("User updated successfully!");
+        setNewUser({
+          UserID: null,
+          FirstName: "",
+          LastName: "",
+          Email: "",
+          Password: "",
+          PhoneNumber: "",
         });
       } else {
-        toast.error("Failed to update customer.");
+        toast.error("Failed to update user.");
       }
     } catch (error) {
-      console.error("Error updating customer:", error);
+      console.error("Error updating user:", error);
     }
   };
-
-  const handleNewCustomerChange = (e) => {
-    setNewCustomer((prevCustomer) => ({
-      ...prevCustomer,
+  
+  
+  const handleNewUserChange = (e) => {
+    setNewUser((prevUser) => ({
+      ...prevUser,
       [e.target.name]: e.target.value,
     }));
   };
@@ -134,13 +128,13 @@ export default function Customers() {
         <div className="search-container">
           <input
             type="text"
-            placeholder="Search customers"
+            placeholder="Search users"
             value={searchTerm}
-            onChange={(e) => searchCustomers(e.target.value)}
+            onChange={(e) => searchUsers(e.target.value)}
           />
         </div>
-        <button className="add-button" onClick={updateCustomer}>
-          Update Customer
+        <button className="add-button" onClick={updateUser}>
+          Update User
         </button>
       </div>
       <div className="customers-container">
@@ -155,79 +149,80 @@ export default function Customers() {
             </tr>
           </thead>
           <tbody>
-            {filteredCustomers && filteredCustomers.length === 0 && searchTerm ? (
+            {filteredUsers && filteredUsers.length === 0 && searchTerm ? (
               <tr>
                 <td colSpan={5} className="no-customers">
-                  No customers found.
+                  No users found.
                 </td>
               </tr>
             ) : (
-              filteredCustomers && filteredCustomers.map((customer) => (
-                <tr key={customer.customer_id}>
+              filteredUsers &&
+              filteredUsers.map((user) => (
+                <tr key={user.UserID}>
                   <td>
-                    {customer.customer_id === newCustomer.customer_id ? (
+                    {user.UserID === newUser.UserID ? (
                       <input
                         type="text"
-                        name="first_name"
-                        value={newCustomer.first_name}
-                        onChange={handleNewCustomerChange}
+                        name="FirstName"
+                        value={newUser.FirstName}
+                        onChange={handleNewUserChange}
                       />
                     ) : (
-                      customer.first_name
+                      user.FirstName
                     )}
                   </td>
                   <td>
-                    {customer.customer_id === newCustomer.customer_id ? (
+                    {user.UserID === newUser.UserID ? (
                       <input
                         type="text"
-                        name="last_name"
-                        value={newCustomer.last_name}
-                        onChange={handleNewCustomerChange}
+                        name="LastName"
+                        value={newUser.LastName}
+                        onChange={handleNewUserChange}
                       />
                     ) : (
-                      customer.last_name
+                      user.LastName
                     )}
                   </td>
                   <td>
-                    {customer.customer_id === newCustomer.customer_id ? (
+                    {user.UserID === newUser.UserID ? (
                       <input
                         type="text"
-                        name="phone_number"
-                        value={newCustomer.phone_number}
-                        onChange={handleNewCustomerChange}
+                        name="PhoneNumber"
+                        value={newUser.PhoneNumber}
+                        onChange={handleNewUserChange}
                       />
                     ) : (
-                      customer.phone_number
+                      user.PhoneNumber
                     )}
                   </td>
                   <td>
-                    {customer.customer_id === newCustomer.customer_id ? (
+                    {user.UserID === newUser.UserID ? (
                       <input
                         type="text"
-                        name="email"
-                        value={newCustomer.email}
-                        onChange={handleNewCustomerChange}
+                        name="Email"
+                        value={newUser.Email}
+                        onChange={handleNewUserChange}
                       />
                     ) : (
-                      customer.email
+                      user.Email
                     )}
                   </td>
                   <td>
-                    {customer.customer_id === newCustomer.customer_id ? (
-                      <button className="save-button" onClick={updateCustomer}>
+                    {user.UserID === newUser.UserID ? (
+                      <button className="save-button" onClick={updateUser}>
                         Save
                       </button>
                     ) : (
                       <>
                         <button
                           className="edit-button"
-                          onClick={() => editCustomer(customer.customer_id)}
+                          onClick={() => editUser(user.UserID)}
                         >
                           Edit
                         </button>
                         <button
                           className="delete-button"
-                          onClick={() => deleteCustomer(customer.customer_id)}
+                          onClick={() => deleteUser(user.UserID)}
                         >
                           Delete
                         </button>

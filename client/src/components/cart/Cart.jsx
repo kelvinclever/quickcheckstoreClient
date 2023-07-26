@@ -3,6 +3,7 @@ import { CartContext } from './Cartcontext.jsx';
 import { useContext } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import CartFallback from './CartFallback.jsx';
+import CheckOut from '../Payment/Checkout.jsx';
 import './cart.css';
 
 const Cart = () => {
@@ -71,6 +72,7 @@ const Cart = () => {
               <p>SUBTOTAL</p>
               <p>KES {getCartTotal()}</p>
             </div>
+           
             <button className="cart-btn proceed-to-checkout">
               <Link to="/checkout">PROCEED TO CHECKOUT</Link>
             </button>

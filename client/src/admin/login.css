@@ -13,13 +13,13 @@
   border: none;
 }
 .button:hover {
-  background-color: rgba(189, 63, 63, 0.788);
+  background-color: orangered;
 }
 /* button styling */
 .button {
   --border-right: 6px;
-  --text-stroke-color:rgba(165, 42, 42, 0.788);
-  --animation-color:rgba(165, 42, 42, 0.795);
+  --text-stroke-color:orangered;
+  --animation-color:orangered;
   --fs-size: 1em;
   letter-spacing: 3px;
   text-decoration: none;
@@ -70,13 +70,13 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color:brown;
+    background-color:#fd5811;
   }
   
   .title::before {
     width: 18px;
     height: 18px;
-    background-color:brown;
+    background-color:orangered;
   }
   
   .title::after {
@@ -96,11 +96,11 @@
   }
   
   .signin a {
-    color: rgba(165, 42, 42, 0.904);
+    color:orangered;
   }
   
   .signin a:hover {
-    text-decoration: underline brown;
+    text-decoration: underline orangered;
   }
   
   .flex {
@@ -150,9 +150,9 @@
   }
   
   button {
-    --primary-color:brown;
+    --primary-color:#fd5811;
     --secondary-color: #fff;
-    --hover-color: #111;
+    --hover-color: orange;
     --arrow-width: 10px;
     --arrow-stroke: 2px;
     box-sizing: border-box;
@@ -220,3 +220,68 @@
       opacity: 0;
     }
   }
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    height:100vh;
+    align-items: center;
+    background-image: linear-gradient(90deg, white,orange, #fd5811,#fd5811,orange,white);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+  .login-logo{
+    background-color: rgba(21, 14, 3, 0.149);
+  
+    border-radius: 30%;
+  
+  }
+  .login-logo img{
+    border-radius: 30%;
+  }
+  .auth-form {
+    padding: 1rem;
+    width: 30%;
+  }
+  .auth-form h1 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #fff;
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bolder;
+  }
+  .auth-form p {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .auth-form p a{
+    text-decoration: none;
+    color:#fff;
+  }
+  .auth-form p{
+    margin-top: 5px;
+  
+  }
+  .auth-form input {
+    padding: 1rem;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 1rem;
+    background-color: #d9d9d9;
+  }
+  .auth-btn {
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 900;
+    border: none;
+    color: #fd5811;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  /* FF7F09,FD5811,FF0000,808080,D9D9D9,fffff */
+  

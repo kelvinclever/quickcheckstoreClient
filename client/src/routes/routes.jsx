@@ -12,6 +12,7 @@ import Admin from "../admin/Admin";
 import Products from "../components/product/Products";
 import ProductDetails from "../components/product/Product";
 import Shop from "../components/product/Shop";
+import LoginAdmin from "../admin/LoginAdmin";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -29,7 +30,7 @@ export const router = createBrowserRouter(
             </Route>
             <Route path="/admin">
                  <Route path="" element={<Admin/>} />
-                <Route path="login" element={<Login />} />
+                <Route path="login" element={<LoginAdmin/>} />
                 <Route path="signup" element={<Signup />} />
             </Route>
 

@@ -13,6 +13,8 @@ import Products from '../product/Products'
         </div>
         <div className='flash-products'>
         <Bestprice/>
+        <Bestprice/>
+        <Bestprice/>
         </div>
     </div>
     )

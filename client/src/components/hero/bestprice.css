@@ -1,45 +1,94 @@
 /* bestprice.css */
 
-/* Style for the container holding the carousel */
+/* Carousel Container */
 .carousel-container {
-    max-width: 100%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Custom Dot Indicator Style */
+.custom-dot-list-style {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.custom-dot-list-style button {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  border: none;
+}
+
+.custom-dot-list-style .react-multi-carousel-dot--active button {
+  background-color: #444;
+}
+
+/* Carousel Item Style */
+.carousel-item-padding-40-px {
+  position: relative; /* For positioning the discount label */
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px; /* Add a margin to create a gap between products */
+}
+
+.carousel-item-padding-40-px h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.carousel-item-padding-40-px p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Image Styles */
+.carousel-item-padding-40-px img {
+  width: 100%;
+  height: 200px; /* Set the height as desired */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Discount Styles */
+.discount-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4d4d;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Original Price Styles */
+.original-price {
+  text-decoration: line-through;
+  color: #777;
+}
+
+/* Adjust Styles for Tablet and Mobile Devices */
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 90%;
   }
-  
-  /* Style for the individual carousel items */
+
   .carousel-item-padding-40-px {
-    padding: 40px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: grid; /* Use CSS Grid Layout */
-    grid-template-columns: repeat(4, 1fr); /* Create a grid with 4 columns */
-    gap: 20px; /* Add some space between the grid items */
+    padding: 20px;
   }
-  
-  /* Style for the carousel navigation dots */
-  .custom-dot-list-style {
-    margin-top: 20px;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
+
+  .carousel-item-padding-40-px h3 {
+    font-size: 16px;
   }
-  
-  /* Style for the carousel navigation dots (inactive) */
-  .custom-dot-list-style li {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #ccc;
-    margin: 0 5px;
-    cursor: pointer;
+
+  .carousel-item-padding-40-px p {
+    font-size: 12px;
   }
-  
-  /* Style for the carousel navigation dots (active) */
-  .custom-dot-list-style li.active {
-    background-color: #007bff; /* Change to your desired active dot color */
-  }
-  
+}

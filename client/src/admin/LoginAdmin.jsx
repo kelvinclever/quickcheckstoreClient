@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Context } from "../../context/customercontext/customer.context";
+import { Context } from "./customerContext/customer.context";
 import Axios from "axios";
 import "./login.css";
 
@@ -27,13 +27,13 @@ const LoginAdmin = () => {
   });
 
   const onSubmit = (data) => {
-    Axios.post(`http://localhost:3000/admins/loginadmin`, data)
+    Axios.post(`http://localhost:8082/admins/loginadmin`, data)
       .then((response) => {
         const { data } = response;
         if (data && data.token) {
           dispatch({ type: "LOGIN_SUCCESS", payload: data });
           setSuccessMessage("Logged in successfully");
-          navigate("/admin/dashboard");
+          navigate("/admin");
         } else {
           dispatch({ type: "LOGIN_FAILURE" });
           const errorMessage = data && data.message ? data.message : "Invalid email or password";
