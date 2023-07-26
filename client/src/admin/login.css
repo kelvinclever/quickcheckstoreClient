@@ -149,7 +149,7 @@
    
   }
   
-  button {
+  /* button {
     --primary-color:#fd5811;
     --secondary-color: #fff;
     --hover-color: orange;
@@ -166,7 +166,7 @@
     align-items: center;
     gap: 0.6em;
     font-weight: bold;
-  }
+  } */
   
   button .arrow-wrapper {
     display: flex;

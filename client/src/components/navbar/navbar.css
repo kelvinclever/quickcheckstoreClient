@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: row;
   position: sticky;
+  justify-content: space-between;
   top: 0;
+  margin-inline: 1rem;
   background-color: white;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   align-items: center;
   height: 15vh;
   z-index: 9999; /* Set a higher z-index value */
@@ -18,46 +20,38 @@
   border: none;
 }
 .search input{
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 9px;
+
+ 
 }
 .search {
-  width: 56%;
+ 
   display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .nav-bar .search input {
-  width: 70%;
+  width: 30rem;
   background-color: #ffe7d1;
+border-top-left-radius: 30px;
+border-bottom-left-radius: 30px;
+}
+.nav-bar .search input {
+  width: 30rem;
+  background-color: #ffe7d1;
+border-top-left-radius: 30px;
+border-bottom-left-radius: 30px;
 }
 
-.nav-bar .search button {
-  background-color: #fd5811;
-  color: #fff;
-  cursor: pointer;
-}
-.search {
-  padding: 0;
-}
-.nav-icons {
-  display: flex;
-  justify-content: center;
-}
 
-.help span {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #fd5811;
-  text-decoration: none;
 
-}
-#help-icon {
-  font-size: larger;
-  color: #fd5811;
-}
-.nav-icons p a{
-  text-decoration: none;
-}
+
+
 .hero-center {
   width: 50%;
   position: relative; /* Add position relative */
@@ -80,8 +74,7 @@
 
 .account-dropdown {
   position: absolute;
-  top: 100%;
-  right: 0;
+
   background-color: #fff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
@@ -96,7 +89,30 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
-
+.searchbtn{
+  background-color: #fd5811;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
 .account-dropdown a:hover {
   background-color: #f7f7f7;
+}
+.nav-icons {
+  display: flex;
+  flex-direction: row ;
+  justify-content: space-around;
+  gap: 5px;
+  color: #fd5811;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.nav-icons a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fd5811;
+  padding:1rem;
 }

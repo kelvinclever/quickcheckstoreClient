@@ -14,6 +14,7 @@ const Signup = () => {
     LastName: yup.string().required('Last Name is required'),
     Email: yup.string().email('Invalid email').required('Email is required'),
     Password: yup.string().required('Password is required'),
+    PhoneNumber: yup.string().required('last Name is required'),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref('Password'), null], 'Passwords must match')
@@ -78,8 +79,11 @@ const Signup = () => {
           <p>{errors.FirstName?.message}</p>
           <input type='text' placeholder='Last Name' {...register('LastName')} />
           <p>{errors.LastName?.message}</p>
+          <input type='text' placeholder='0794937897' {...register('PhoneNumber')} />
+          <p>{errors.PhoneNumber?.message}</p>
           <input type='email' placeholder='Email' {...register('Email')} />
           <p>{errors.Email?.message}</p>
+
           <input type='password' placeholder='Password' {...register('Password')} />
           <p>{errors.Password?.message}</p>
           <input

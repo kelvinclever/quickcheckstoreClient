@@ -23,7 +23,7 @@ export default function UserAdmin() {
 
   async function getAdmins() {
     try {
-      const response = await fetch("http://localhost:3000/admin");
+      const response = await fetch("http://localhost:8082/admins");
       const data = await response.json();
       setAdmin(data.admin);
       setFilteredAdmin(data.admin);
@@ -48,7 +48,7 @@ export default function UserAdmin() {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/admin/new", {
+      const response = await fetch("http://localhost:8082/admins/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export default function UserAdmin() {
 
   const deleteAdmin = async (id) => {
     try {
-      await fetch(`http://localhost:3000/admin/${id}/delete`, {
+      await fetch(`http://localhost:8082/admins/${id}/delete`, {
         method: "DELETE",
       });
       setAdmin((prevAdmin) =>
@@ -122,7 +122,7 @@ export default function UserAdmin() {
       }
 
       const response = await fetch(
-        `http://localhost:3000/admin/${newAdmin.id}/update`,
+        `http://localhost:8082/admins/${newAdmin.id}/update`,
         {
           method: "PUT",
           headers: {

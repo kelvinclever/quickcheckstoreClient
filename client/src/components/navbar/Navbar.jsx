@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../../public/images/logo2.jpg';
+import {RiLogoutCircleLine,RiLoginCircleLine} from 'react-icons/ri'
 import './navbar.css';
 import { FaUserAlt, FaCartPlus } from 'react-icons/fa';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GiHelp } from 'react-icons/gi';
-
+import { Context } from '../../admin/admincontext/Context';
 const Navbar = () => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
 
+  const navigate=useNavigate()
+    const {dispatch}=useContext(Context);
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+        navigate('/admin/login');
+      };
   const handleAccountClick = () => {
     setShowAccountDropdown(!showAccountDropdown);
   };
@@ -21,35 +31,42 @@ const Navbar = () => {
       </div>
       <div className="search">
         <input type="text" placeholder="Search here" />
-        <button>SEARCH</button>
+        <button className='searchbtn'>SEARCH</button>
       </div>
       <div className="nav-icons">
-        <p>
+
+        <div>
           <Link to="/help">
-            <span className="help">
               <GiHelp id="help-icon" /> HELP
-            </span>
+           
           </Link>
-        </p>
-        <p>
-          <span className="help" onClick={handleAccountClick}>
+          </div>
+          
+        
+        <div>
+          <span className='nav-icons' onClick={handleAccountClick}>
             account <FaUserAlt className="account" />
           </span>
   
           {showAccountDropdown && (
             <div className="account-dropdown">
-              <Link to='/auth/login'>login</Link>
-              <Link to='/auth/signup'>signup</Link>
+              <Link to='/userprofile'>profile</Link>
+              <button className='Logoutbtn' onClick={handleLogout}>logout</button>
+
             </div>
           )}
-        </p>
-        <p>
+        </div>
+        <div>
           <Link to="/cart">
-            <span className="help">
               <FaCartPlus /> Cart
-            </span>
           </Link>
-        </p>
+        </div>
+        <div>
+          <Link to='/auth/login'><RiLogoutCircleLine/>login</Link>
+        </div>
+        <div>
+          <Link to='/auth/signup'><RiLoginCircleLine/>signup</Link>
+        </div>
       </div>
     </div>
   );
