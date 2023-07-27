@@ -21,6 +21,7 @@ export const router = createBrowserRouter(
                 <Route path="cart" element={<Cart />} />
                 <Route path="checkout" element={<Checkout/>} />
                 <Route path="help" element={<Help/>} />
+                <Route path="/products/all" element={ <Products apiurl={`http://localhost:8082/products`}/>} />
                 <Route path="success" element={<Success/>} />
                 <Route path="contact-us" element={<Contactus />} />
                 <Route path="products" element={<Shop/>} />

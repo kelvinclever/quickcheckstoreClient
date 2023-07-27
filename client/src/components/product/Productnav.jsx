@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "./shopContext.jsx";
+import Products from "./Products.jsx";
 const Productnav = () => {
   const { ui } = useContext(Context);
   console.log(ui);
@@ -7,35 +8,39 @@ const Productnav = () => {
     <div className="productnav">
       {ui == "Phones & tablets" ? (
         <div>
-         this phones
+        <Products apiurl={`http://localhost:8082/products/phonesTablets/category`}/>
         </div>
-      ) : ui == "Fashion" ? (
+      ) : ui == "Sports" ? (
         <div>
-        fashion
+        <Products apiurl={`http://localhost:8082/products/sports/category`}/>
         </div>
       ) : ui == "Computing" ? (
         <div>
-         Computing
+          <Products apiurl={`http://localhost:8082/products/computing/category`}/>
         </div>
       ) : ui == "Gaming" ? (
         <div>
-          <h1>gaming</h1>
+           sorry check back later
         </div>
       ) : ui == "Health & beauty" ? (
         <div>
-          health and beauty
+         sorry check back later
         </div>
       ) : ui=="TVs & Audio"?(
         <div>
-            tvs
+           <Products apiurl={`http://localhost:8082/products/tvsaudio/category`}/>
         </div>
       ):ui=="Supermarket"?(
         <div>
-            Supermarket
+             <Products apiurl={`http://localhost:8082/products/supermarket/category`}/>
         </div>
       ):ui=="Home & Office"?(
         <div>
-            home and office
+           sorry check later
+        </div>
+      ):ui=="AllProducts"?(
+        <div>
+        <Products apiurl={`http://localhost:8082/products`}/>
         </div>
       ):null}
     </div>

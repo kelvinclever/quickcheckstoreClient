@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link} from 'react-router-dom';
 import Logo from '../../../public/images/logo2.jpg';
-import {RiLogoutCircleLine,RiLoginCircleLine} from 'react-icons/ri'
+import { RiLogoutCircleLine, RiLoginCircleLine } from 'react-icons/ri';
 import './navbar.css';
 import { FaUserAlt, FaCartPlus } from 'react-icons/fa';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { GiHelp } from 'react-icons/gi';
 import { Context } from '../../admin/admincontext/Context';
+import { useProductContext } from '../product/ProductsContext';
+
+// Navbar Component
 const Navbar = () => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const navigate=useNavigate()
-    const {dispatch}=useContext(Context);
+  const { dispatch } = useContext(Context);
+  const { products, filteredProducts, setFilteredProducts } = useProductContext();
+// Use useHistory hook
 
-    const handleLogout = () => {
-        dispatch({ type: 'LOGOUT' });
-        navigate('/admin/login');
-      };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchButtonClick = () => {
+    const filtered = products.filter((product) =>
+      product.ProductName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+
+    // Check if the current location is not the products page, then navigate to it.
+    if (history.location.pathname !== '/products') {
+      history.push('/products');
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    history.push('/admin/login'); // Use history.push for navigation
+  };
+
   const handleAccountClick = () => {
     setShowAccountDropdown(!showAccountDropdown);
   };
@@ -26,46 +46,54 @@ const Navbar = () => {
     <div className="nav-bar">
       <div className="logo-main">
         <Link to="/">
-          <img src={Logo} alt="" srcset="" />
+          <img src={Logo} alt="" srcSet="" />
         </Link>
       </div>
       <div className="search">
-        <input type="text" placeholder="Search here" />
-        <button className='searchbtn'>SEARCH</button>
+        <input
+          type="text"
+          placeholder="Search here"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button className="searchbtn" onClick={handleSearchButtonClick}>
+          SEARCH
+        </button>
       </div>
       <div className="nav-icons">
-
         <div>
           <Link to="/help">
-              <GiHelp id="help-icon" /> HELP
-           
+            <GiHelp id="help-icon" /> HELP
           </Link>
-          </div>
-          
-        
+        </div>
         <div>
-          <span className='nav-icons' onClick={handleAccountClick}>
+          <span className="nav-icons" onClick={handleAccountClick}>
             account <FaUserAlt className="account" />
           </span>
-  
+
           {showAccountDropdown && (
             <div className="account-dropdown">
-              <Link to='/userprofile'>profile</Link>
-              <button className='Logoutbtn' onClick={handleLogout}>logout</button>
-
+              <Link to="/userprofile">profile</Link>
+              <button className="Logoutbtn" onClick={handleLogout}>
+                logout
+              </button>
             </div>
           )}
         </div>
         <div>
           <Link to="/cart">
-              <FaCartPlus /> Cart
+            <FaCartPlus /> Cart
           </Link>
         </div>
         <div>
-          <Link to='/auth/login'><RiLogoutCircleLine/>login</Link>
+          <Link to="/auth/login">
+            <RiLogoutCircleLine /> login
+          </Link>
         </div>
         <div>
-          <Link to='/auth/signup'><RiLoginCircleLine/>signup</Link>
+          <Link to="/auth/signup">
+            <RiLoginCircleLine /> signup
+          </Link>
         </div>
       </div>
     </div>

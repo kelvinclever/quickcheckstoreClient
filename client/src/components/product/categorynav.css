@@ -6,4 +6,58 @@
        
     }
   
+    /* categorynav.css */
+
+/* Style for the main container */
+.hero-categories {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 20px;
+ }
+ 
+ /* Style for category heading */
+ .cat-heading {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+ }
+ 
+ .cat-heading svg {
+   font-size: 24px;
+   margin-right: 5px;
+ }
+ 
+ .cat-title {
+   font-size: 20px;
+   cursor: pointer;
+ }
+ 
+ /* Style for category icons and titles */
+ .cat-icon {
+   display: flex;
+   align-items: center;
+   margin-bottom: 5px;
+   cursor: pointer;
+ }
+ 
+ .cat-icon svg {
+   font-size: 24px;
+   margin-right: 10px;
+ }
+ 
+ /* Style for "All in our shop" heading */
+ h1 {
+   font-size: 24px;
+   cursor: pointer;
+   margin-bottom: 10px;
+ }
+ 
+ /* Style for "our brands" heading */
+ .brand {
+   font-size: 24px;
+   margin-top: 20px;
+   margin-bottom: 10px;
+ }
+ 
   

@@ -15,8 +15,8 @@ const Categorynav = () => {
     dispatch({ type: "Phones & tablets", payload: 'Phones & tablets' });
   }
 
-  const Fashion = () => {
-    dispatch({ type: "Fashion", payload: 'Fashion' });
+  const Sports = () => {
+    dispatch({ type: "Sports", payload: 'Sports' });
   }
 
   const Computing = () => {
@@ -42,7 +42,9 @@ const Categorynav = () => {
   const HomeOffice = () => {
     dispatch({ type: "Home & Office", payload: 'Home & Office' });
   }
-
+  const AllProducts= () => {
+    dispatch({ type: "AllProducts", payload: 'AllProducts' });
+  }
   // State to manage dropdown visibility
   const [showDropdown, setShowDropdown] = useState({});
 
@@ -55,125 +57,51 @@ const Categorynav = () => {
   };
 
   return (
-    <div className="hero-categories productpage">
+    <div>
+      <div>
+        <h1 onClick={AllProducts}>All in our shop</h1>
+      </div>
+    <div className="hero-categories">
       <div className='cat-heading'>
         <BiCategoryAlt />
-        <h2>categories</h2>
+        <h2 className='cat-title'>categories</h2>
       </div>
-      <div className="cat-icon" onClick={() => {
-        PhonesTablets();
-        toggleDropdown('Phones & tablets');
-      }}>
+      <div className="cat-icon">
         <FcSmartphoneTablet />
-        <h2>Phones & tablets</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Phones & tablets'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Phones & tablets category description</p>
-          </div>
-        )}
+        <h3 className='cat-title' onClick={PhonesTablets}>Phones & tablets</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        Fashion();
-        toggleDropdown('Fashion');
-      }}>
+      <div className="cat-icon">
         <GiClothes />
-        <h2>Fashion</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Fashion'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>men</p>
-            <p>women</p>
-            <p>children</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={Sports}>Sports</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        Computing();
-        toggleDropdown('Computing');
-      }}>
+      <div className="cat-icon">
         <GiComputing />
-        <h2>Computing</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Computing'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Computing category description</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={Computing}>Computing</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        Gaming();
-        toggleDropdown('Gaming');
-      }}>
+      <div className="cat-icon">
         <GiGamepad />
-        <h2>Gaming</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Gaming'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Gaming category description</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={Gaming}>Gaming</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        HealthBeauty();
-        toggleDropdown('Health & beauty');
-      }}>
+      <div className="cat-icon">
         <TbHealthRecognition />
-        <h2>Health & beauty</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Health & beauty'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Health & beauty category description</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={HealthBeauty}>Health & beauty</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        TVsAudio();
-        toggleDropdown('TVs & Audio');
-      }}>
+      <div className="cat-icon">
         <LiaTvSolid />
-        <h2>TVs & Audio</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['TVs & Audio'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>TVs & Audio category description</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={TVsAudio}>TVs & Audio</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        Supermarket();
-        toggleDropdown('Supermarket');
-      }}>
+      <div className="cat-icon">
         <SiMarketo />
-        <h2>Supermarket</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Supermarket'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Supermarket category description</p>
-          </div>
-        )}
+        <h3  className='cat-title'onClick={Supermarket}>Supermarket</h3>
       </div>
-      <div className="cat-icon" onClick={() => {
-        HomeOffice();
-        toggleDropdown('Home & Office');
-      }}>
+      <div className="cat-icon">
         <RiHomeOfficeFill />
-        <h2>Home & Office</h2>
-        {/* Render the dropdown content based on visibility state */}
-        {showDropdown['Home & Office'] && (
-          <div className="dropdown-content">
-            {/* Dropdown content here */}
-            <p>Home & Office category description</p>
-          </div>
-        )}
+        <h3  className='cat-title' onClick={HomeOffice}>Home & Office</h3>
       </div>
+    </div>
+    <div>
+    <h1 className='brand'>our brands</h1>
+    </div>
     </div>
   );
 }

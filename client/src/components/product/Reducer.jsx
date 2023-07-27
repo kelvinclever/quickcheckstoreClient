@@ -4,10 +4,14 @@ const Reducer = (state, action) => {
         return {
           ui: action.payload
         };
-      case "Fashion":
+      case "Sports":
         return {
           ui: action.payload
         };
+        case "AllProducts":
+          return {
+            ui: action.payload
+          };
       case "Computing":
         return {
           ui: action.payload
@@ -25,10 +29,6 @@ const Reducer = (state, action) => {
           ui: action.payload
         };
       case "Supermarket":
-        return {
-          ui: action.payload
-        };
-      case "Home & Office":
         return {
           ui: action.payload
         };

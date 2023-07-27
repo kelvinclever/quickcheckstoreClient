@@ -5,6 +5,7 @@ import { Navigation } from "swiper/modules";
 import Paycard from "./Paycard.jsx";
 import Carousel from "./Carousel";
 import Newproducts from "./Newproducts.jsx";
+import { Link } from "react-router-dom";
 import "./hero.css";
 import Herocategories from "./Hero-categories.jsx";
 const Hero = () => {
@@ -70,7 +71,7 @@ const Hero = () => {
           <div className="hero-right-bottom">
             <span>smart payment for smart people</span>
             <span>
-              <button>explore our products</button>
+              <Link to="/products">explore our products</Link>
             </span>
           </div>
         </div>

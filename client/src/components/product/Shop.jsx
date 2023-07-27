@@ -7,7 +7,7 @@ const Shop = () => {
       <div className="categoryside">
         <Categorynav />
       </div>
-      <div>
+      <div className="productside">
         <Productnav />
       </div>
     </div>

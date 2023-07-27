@@ -9,11 +9,9 @@ import Products from '../product/Products'
     return(
     <div className="newproducts">
         <div className='bar-product'>
-            <span className='flash-heading'>Welcome , Start here</span>
+            <span className='flash-heading'>Discounted price</span>
         </div>
         <div className='flash-products'>
-        <Bestprice/>
-        <Bestprice/>
         <Bestprice/>
         </div>
     </div>

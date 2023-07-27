@@ -2,7 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 import Reducer from "./Reducer.jsx";
 //initial state for user obj
 const INITIAL_STATE = {
-    ui: JSON.parse(localStorage.getItem("ui")) || ''
+    ui: JSON.parse(localStorage.getItem("ui")) || 'AllProducts'
 }
 //declare createContext
 export const Context = createContext(INITIAL_STATE);
