@@ -43,12 +43,12 @@ border-bottom-left-radius: 30px;
 }
 .nav-bar .search input {
   width: 30rem;
+  color: black;
   background-color: #ffe7d1;
 border-top-left-radius: 30px;
 border-bottom-left-radius: 30px;
+padding-inline:2rem;
 }
-
-
 
 
 

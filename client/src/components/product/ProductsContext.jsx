@@ -7,6 +7,7 @@ export function useProductContext() {
 }
 
 export function ProductProvider({ children, apiurl }) {
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);

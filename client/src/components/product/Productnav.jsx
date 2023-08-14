@@ -1,46 +1,48 @@
 import { useContext } from "react";
-import { Context } from "./shopContext.jsx";
+import { UIContext } from "./shopContext.jsx";
 import Products from "./Products.jsx";
+import { apiurl } from "./alliases.jsx";
 const Productnav = () => {
-  const { ui } = useContext(Context);
-  console.log(ui);
+  const { categories } = useContext(UIContext);
+  console.log(categories);
   return (
     <div className="productnav">
-      {ui == "Phones & tablets" ? (
+      {categories == "Phones & tablets" ? (
         <div>
-        <Products apiurl={`http://localhost:8082/products/phonesTablets/category`}/>
+        <Products apiurl={`${apiurl}/phonesTablets/category`}/>
         </div>
-      ) : ui == "Sports" ? (
+      ) : categories== "Sports" ? (
         <div>
-        <Products apiurl={`http://localhost:8082/products/sports/category`}/>
+        <Products apiurl={`${apiurl}/sports/category`}/>
         </div>
-      ) : ui == "Computing" ? (
+      ) :categories == "Computing" ? (
         <div>
-          <Products apiurl={`http://localhost:8082/products/computing/category`}/>
+          <Products apiurl={`${apiurl}/computing/category`}/>
         </div>
-      ) : ui == "Gaming" ? (
+      ) : categories== "Gaming" ? (
         <div>
-           sorry check back later
+            <Products apiurl={`${apiurl}/computing/category`}/>
         </div>
-      ) : ui == "Health & beauty" ? (
+      ) : categories == "Health & beauty" ? (
         <div>
-         sorry check back later
+        <Products apiurl={`${apiurl}/`}/>
         </div>
-      ) : ui=="TVs & Audio"?(
+      ) : categories=="TVs & Audio"?(
         <div>
-           <Products apiurl={`http://localhost:8082/products/tvsaudio/category`}/>
+           <Products apiurl={`${apiurl}/tvsaudio/category`}/>
         </div>
-      ):ui=="Supermarket"?(
+      ):categories=="Supermarket"?(
         <div>
-             <Products apiurl={`http://localhost:8082/products/supermarket/category`}/>
+             <Products apiurl={`${apiurl}/supermarket/category`}/>
         </div>
-      ):ui=="Home & Office"?(
-        <div>
-           sorry check later
+      ):categories=="Home & Office"?(
+        <div> 
+          <Products apiurl={`${apiurl}/`}/>
+
         </div>
-      ):ui=="AllProducts"?(
+      ):categories=="AllProducts"?(
         <div>
-        <Products apiurl={`http://localhost:8082/products`}/>
+        <Products apiurl={`${apiurl}/`}/>
         </div>
       ):null}
     </div>

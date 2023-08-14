@@ -77,11 +77,7 @@ const Sidebar = () => {
             {/* Dropdown content for 'Products' */}
             {/* Add your desired content for 'View', 'Add', and 'Update' */}
             <span onClick={handleProducts}> <CiViewTable/> View Products</span>
-          
-            <br />
-            Add Product
-            <br />
-            Update Product
+        
           </div>
         )}
       </div>
@@ -93,11 +89,6 @@ const Sidebar = () => {
             {/* Dropdown content for 'Customers' */}
             {/* Add your desired content for 'View', 'Add', and 'Update' */}
             <span onClick={handleCustomers}> <CiViewTable/> View Customers</span>
-           
-            <br />
-            Add Customer
-            <br />
-            Update Customer
           </div>
         )}
       </div>
@@ -108,12 +99,9 @@ const Sidebar = () => {
           <div className="dropdown-content">
             {/* Dropdown content for 'Orders' */}
             {/* Add your desired content for 'View', 'Add', and 'Update' */}
-            <span onClick={handleOrders}> <CiViewTable/> View Orders</span>
+            <span onClick={handleOrders}> <CiViewTable/> add product</span>
            
-            <br />
-            Add Order
-            <br />
-            Update Order
+    
           </div>
         )}
       </div>
@@ -126,9 +114,6 @@ const Sidebar = () => {
             {/* Add your desired content for 'View', 'Add', and 'Update' */}
             <span onClick={handleAdmins}><CiViewTable/>  View Admins</span>
            
-            <span> Add Admin</span>
-           
-            <span>   Update Admin</span>
          
           </div>
         )}

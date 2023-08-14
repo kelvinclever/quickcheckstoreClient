@@ -3,7 +3,6 @@ import { CartContext } from './Cartcontext.jsx';
 import { useContext } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import CartFallback from './CartFallback.jsx';
-import CheckOut from '../Payment/Checkout.jsx';
 import './cart.css';
 
 const Cart = () => {

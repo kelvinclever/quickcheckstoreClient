@@ -10,7 +10,16 @@
   .navbar {
     z-index: 9999;
   }
-  
+  .hero-product a{
+    background-color: orangered;
+    border-radius: 5px;
+    padding-inline: 1rem;
+    padding-block:5px;
+    color: #171717;
+    text-transform: capitalize;
+    font-family: sans-serif;
+    font-weight: bolder;
+  }
   .hero-right,
   .hero-left {
     width: 25%;

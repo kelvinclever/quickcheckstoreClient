@@ -1,4 +1,4 @@
-import { Context } from '../product/shopContext';
+import { UIContext } from '../product/shopContext';
 import { useContext } from 'react';
 import {Link} from 'react-router-dom'
 import './herocategories.css';
@@ -11,7 +11,7 @@ import { SiMarketo } from 'react-icons/si';
 import { RiHomeOfficeFill } from 'react-icons/ri';
 
 const Herocategories = () => {
-  const { dispatch } = useContext(Context);
+  const { dispatch } = useContext(UIContext);
 
   const PhonesTablets = () => {
     dispatch({ type: "Phones & tablets", payload: 'Phones & tablets' });

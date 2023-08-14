@@ -2,36 +2,40 @@ const Reducer = (state, action) => {
     switch (action.type) {
       case "Phones & tablets":
         return {
-          ui: action.payload
+          categories: action.payload
         };
       case "Sports":
         return {
-          ui: action.payload
+          categories: action.payload
         };
         case "AllProducts":
           return {
-            ui: action.payload
+            categories: action.payload
           };
       case "Computing":
         return {
-          ui: action.payload
+          categories: action.payload
         };
       case "Gaming":
         return {
-          ui: action.payload
+          categories: action.payload
         };
       case "Health & beauty":
         return {
-          ui: action.payload
+          categories: action.payload
         };
       case "TVs & Audio":
         return {
-          ui: action.payload
+          categories: action.payload
         };
       case "Supermarket":
         return {
-          ui: action.payload
+          categories: action.payload
         };
+        case "Home & Office":
+          return {
+            categories: action.payload
+          };
       default:
         return state;
     }

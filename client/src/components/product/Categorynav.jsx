@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Context } from './shopContext.jsx';
+import { UIContext } from './shopContext.jsx';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { FcSmartphoneTablet } from 'react-icons/fc';
 import { GiClothes, GiComputing, GiGamepad } from 'react-icons/gi';
@@ -9,7 +9,7 @@ import { SiMarketo } from 'react-icons/si';
 import { RiHomeOfficeFill } from 'react-icons/ri';
 import './categorynav.css'
 const Categorynav = () => {
-  const { dispatch } = useContext(Context);
+  const { dispatch } = useContext(UIContext);
 
   const PhonesTablets = () => {
     dispatch({ type: "Phones & tablets", payload: 'Phones & tablets' });

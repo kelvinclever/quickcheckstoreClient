@@ -5,10 +5,13 @@ import 'react-multi-carousel/lib/styles.css';
 import { CartContext } from '../cart/Cartcontext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { apiurl } from '../product/alliases';
+import Loader from '../product/Loader';
+import { useProductContext } from '../product/ProductsContext';
 const Bestprice = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {  error } = useProductContext();
   const { cartItems, addToCart, removeFromCart, increaseItem, decreaseItem } = useContext(CartContext);
   const addtocarttoast = () => toast.success('Item added to cart!');
   const removefromcarttoast = () => toast.error('Item removed from cart!');
@@ -37,7 +40,7 @@ const Bestprice = (props) => {
   useEffect(() => {
     setLoading(true);
     // Fetch data from the API endpoint
-    fetch('http://localhost:8082/products/ondiscount/products')
+    fetch(`${apiurl}/ondiscount/products`)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
@@ -66,11 +69,12 @@ const Bestprice = (props) => {
 
   return (
     <div>
-      {loading ? (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
-      ) : (
+       {loading ? (
+        <div className='loader'><Loader/></div>
+      ) : error ? (
+        <div className='error-message'><Loader/></div>
+      ) : 
+      (
         <Carousel
           swipeable={false}
           draggable={false}

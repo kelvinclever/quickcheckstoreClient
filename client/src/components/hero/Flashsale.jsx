@@ -5,7 +5,8 @@ import 'react-multi-carousel/lib/styles.css';
 import { CartContext } from '../cart/Cartcontext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { apiurl } from '../product/alliases';
+import Loader from '../product/Loader';
 const Bestprice = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ const Bestprice = (props) => {
   useEffect(() => {
     setLoading(true);
     // Fetch data from the API endpoint
-    fetch('http://localhost:8082/products/ondiscount/products')
+    fetch(`${apiurl}/ondiscount/products`)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
@@ -69,6 +70,7 @@ const Bestprice = (props) => {
       {loading ? (
         <div className="loader-container">
           <div className="loader" />
+          <Loader/>
         </div>
       ) : (
         <Carousel

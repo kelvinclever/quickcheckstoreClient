@@ -1,37 +1,34 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useProductContext } from './ProductsContext.jsx';
 
-const ProductDetails = () => {
+export default function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const { products } = useProductContext();
 
-  useEffect(() => {
-    // Fetch the product details based on the productId
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`http://localhost:8082/products/${productId}`);
-        const data = await response.json();
-        setProduct(data.product);
-      } catch (error) {
-        console.error('Error fetching product details:', error);
-      }
-    };
-
-    fetchProductDetails();
-  }, [productId]);
-
+  const product = products.find((product) => product.ProductID === parseInt(productId));
   if (!product) {
-    return <p>Loading...</p>;
+    return <div className='error-message'>Product not found.</div>;
   }
 
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      {/* Add any other product details you want to display */}
+    <div className='product-details'>
+      <img src={product.ProductImage} alt={product.ProductName} className='product-image' />
+      <div className='product-description'>
+        <h1 className='product-title'>{product.ProductName}</h1>
+        <p className='product-dec'>{product.Description}</p>
+        <p className='product-price'>
+          {product.SalePrice ? (
+            <>
+              <span className='original-price'>Price: ${product.Price}</span>
+              {' | '}
+              Sale Price: ${product.SalePrice}
+            </>
+          ) : (
+            `Price: $${product.Price}`
+          )}
+        </p>
+      </div>
     </div>
   );
-};
-
-export default ProductDetails;
+}

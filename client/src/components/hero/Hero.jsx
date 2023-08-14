@@ -8,6 +8,7 @@ import Newproducts from "./Newproducts.jsx";
 import { Link } from "react-router-dom";
 import "./hero.css";
 import Herocategories from "./Hero-categories.jsx";
+import Categorynav from "../product/Categorynav.jsx";
 const Hero = () => {
   const cards = [
     <SwiperSlide>
@@ -34,6 +35,9 @@ const Hero = () => {
         alt=""
       />
     </SwiperSlide>,
+    <SwiperSlide>
+    <Categorynav/>
+  </SwiperSlide>,
     <SwiperSlide>
       <img
         src="https://ke.jumia.is/cms/2023/W27/CP/Sliders/KE_HiiBaridi_Fashion_0623_S.jpg"
@@ -70,7 +74,7 @@ const Hero = () => {
           </div>
           <div className="hero-right-bottom">
             <span>smart payment for smart people</span>
-            <span>
+            <span className="hero-product">
               <Link to="/products">explore our products</Link>
             </span>
           </div>
