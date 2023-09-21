@@ -1,13 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useProductContext } from './ProductsContext.jsx';
+import { useProductContext } from '../product/ProductsContext.jsx';
 import { CartContext } from '../cart/Cartcontext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './products.css';
-import Loader from './Loader.jsx';
+import '../product/products.css';
+import Loader from '../product/Loader.jsx';
 
-export default function Products({ apiurl }) {
+export default function Sports() {
   const { products, setProducts, filteredProducts, setFilteredProducts, loading, error } = useProductContext();
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
   
@@ -24,7 +24,7 @@ export default function Products({ apiurl }) {
 
   async function getProducts() {
     try {
-      const response = await fetch(apiurl);
+      const response = await fetch(`http://localhost:8082/products/sports/category`);
       if (!response.ok) {
         throw new Error('Failed to fetch products.');
       }

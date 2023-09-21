@@ -1,6 +1,13 @@
 import { useContext } from "react";
 import { UIContext } from "./shopContext.jsx";
 import Products from "./Products.jsx";
+import TVsAudio from "../shopCollection/TVsAudio.jsx"
+import Supermarket from "../shopCollection/Supermarket.jsx"
+import Computing from "../shopCollection/Computing.jsx"
+import Gaming from "../shopCollection/Gaming.jsx"
+import Sports from "../shopCollection/Sports.jsx"
+import HealthBeauty from "../shopCollection/HealthBeauty.jsx"
+import PhonesTablet from "../shopCollection/PhonesTablet.jsx"
 import { apiurl } from "./alliases.jsx";
 const Productnav = () => {
   const { categories } = useContext(UIContext);
@@ -9,36 +16,31 @@ const Productnav = () => {
     <div className="productnav">
       {categories == "Phones & tablets" ? (
         <div>
-        <Products apiurl={`${apiurl}/phonesTablets/category`}/>
+       <PhonesTablet/>
         </div>
       ) : categories== "Sports" ? (
         <div>
-        <Products apiurl={`${apiurl}/sports/category`}/>
+        <Sports/>
         </div>
       ) :categories == "Computing" ? (
         <div>
-          <Products apiurl={`${apiurl}/computing/category`}/>
+       <Computing/>
         </div>
       ) : categories== "Gaming" ? (
         <div>
-            <Products apiurl={`${apiurl}/computing/category`}/>
+        <Gaming/>
         </div>
       ) : categories == "Health & beauty" ? (
         <div>
-        <Products apiurl={`${apiurl}/`}/>
+        <HealthBeauty/>
         </div>
       ) : categories=="TVs & Audio"?(
         <div>
-           <Products apiurl={`${apiurl}/tvsaudio/category`}/>
+           <TVsAudio/>
         </div>
       ):categories=="Supermarket"?(
         <div>
-             <Products apiurl={`${apiurl}/supermarket/category`}/>
-        </div>
-      ):categories=="Home & Office"?(
-        <div> 
-          <Products apiurl={`${apiurl}/`}/>
-
+             <Supermarket/>
         </div>
       ):categories=="AllProducts"?(
         <div>

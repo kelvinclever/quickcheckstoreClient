@@ -32,10 +32,6 @@ const Reducer = (state, action) => {
         return {
           categories: action.payload
         };
-        case "Home & Office":
-          return {
-            categories: action.payload
-          };
       default:
         return state;
     }

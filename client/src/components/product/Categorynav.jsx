@@ -39,9 +39,6 @@ const Categorynav = () => {
     dispatch({ type: "Supermarket", payload: 'Supermarket' });
   }
 
-  const HomeOffice = () => {
-    dispatch({ type: "Home & Office", payload: 'Home & Office' });
-  }
   const AllProducts= () => {
     dispatch({ type: "AllProducts", payload: 'AllProducts' });
   }
@@ -93,10 +90,6 @@ const Categorynav = () => {
       <div className="cat-icon">
         <SiMarketo />
         <h3  className='cat-title'onClick={Supermarket}>Supermarket</h3>
-      </div>
-      <div className="cat-icon">
-        <RiHomeOfficeFill />
-        <h3  className='cat-title' onClick={HomeOffice}>Home & Office</h3>
       </div>
     </div>
     <div>
